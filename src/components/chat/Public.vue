@@ -1,8 +1,8 @@
 <script>
 import Lista from './MessagesChatList.vue'
 import Form from './ChatForm.vue'
-import { query, orderBy, addDoc, collection, getDocs, onSnapshot } from 'firebase/firestore';
-import { db } from '../../services/firebase.js';
+import { savePublicChatMessage, suscribePublicChatMessage } from '../../services/public-chat.js';
+
 export default {
     name: 'Public',
     components: { Lista, Form },
@@ -13,26 +13,11 @@ export default {
     },
     methods: {
         addMessage(newMessage) {
-            const refChat = collection(db, 'public-chat');
-            addDoc(refChat, {
-                date: new Date(),
-                ...newMessage,
-            })
+            savePublicChatMessage(newMessage)
         }
     },
     async mounted() {
-        const refChat = collection(db, 'public-chat');
-        const chatQuery = query(refChat, orderBy('date', 'asc'));
-        const snapshot = await getDocs(refChat);
-        const docs = snapshot.docs
-
-        onSnapshot(chatQuery, snapshot => {
-            this.messages = snapshot.docs.map(doc => ({
-                id: doc.id,
-                email: doc.data().email,
-                text: doc.data().text,
-            }));
-        });
+        suscribePublicChatMessage(newMessages => this.messages = newMessages)
     }
 }
 

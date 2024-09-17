@@ -1,9 +1,13 @@
 <script>
+
+import registerForm from '../components/register/registerForm.vue';
+
 export default {
     name: 'Register',
+    components: {registerForm}
 }
 </script>
 
 <template>
-    <h1>Register</h1>
+    <registerForm />
 </template>

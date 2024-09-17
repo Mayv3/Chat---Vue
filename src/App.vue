@@ -16,7 +16,7 @@ export default {
       <li><router-link :to="{ name: 'register' }" class="block py-2 px-4">Register</router-link></li>
     </ul>
   </nav>
-  <main class="container p-4 mx-auto">
+  <main class="container p-4 mx-auto min-h-fit">
     <router-view />
   </main>
   <footer class="flex justify-center h-24 bg-slate-900 text-center items-center text-slate-100">

@@ -21,7 +21,6 @@ export default {
 }
 </script>
 <template>
-
     <h2 class="mb-4">Mensajes</h2>
     <form action="#" @submit.prevent="() => handleSubmit()">
         <div class="mb-4">
